@@ -1,0 +1,56 @@
+<div style="width: 100%; overflow: hidden;">
+    <div style="width: 600px; float: left;"> <h1> Users </h1>  </div>
+    <div style="margin-left: 620px; margin-top: 50px;"> <input
+       type="text" 
+       placeholder="Search by name"
+       [(ngModel)]="search"
+       (ngModelChange)="searchResources(search)" > </div>
+    <div style="float: right; margin-top: -30px;"> <button (click)="sortByAge()"> sort by age</button> 
+      <button (click)="sortByDate()">sort by created date</button>
+    </div>
+
+
+</div>
+
+<a routerLink="/create">
+  <button> Create User</button>
+</a>
+
+<div *ngIf="!LoadMore; else elseTemplate">
+  <div class="card" >
+    <div  *ngFor="let user of sortedUsers.slice(0,6)" class="card-detail">
+      <a routerLink="/detail/{{user.id}}">
+        <img src="{{user.avatarUrl}}" alt="avatar" style="height: 70%;">
+      <span class="container">
+        <h1>{{user.name}}</h1>
+        <h2>{{user.statusMessage}}</h2>
+        <h2>{{user.createdAt}}</h2>
+      </span>
+      </a>
+    </div>
+  </div>
+  <div style="margin-left:80%">
+   <button (click)="loadMore()" >
+     <h3> Load More</h3>
+   </button>
+  </div>
+</div>
+<ng-template #elseTemplate>
+  <div class="card" >
+    <div  *ngFor="let user of sortedUsers" class="card-detail">
+      <a routerLink="/detail/{{user.id}}">
+        <img src="{{user.avatarUrl}}" alt="avatar" style="height: 70%;">
+      <span class="container">
+        <h1>{{user.name}}</h1>
+        <h2>{{user.statusMessage}}</h2>
+        <h2>{{user.createdAt}}</h2>
+      </span>
+      </a>
+    </div>
+  </div>
+  <div style="margin-left:80%">
+   <button (click)="loadMore()">
+     <h3> Load Less</h3>
+   </button>
+  </div></ng-template>
+  
