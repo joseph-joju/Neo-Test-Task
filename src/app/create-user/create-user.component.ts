@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormControlName, FormGroup, Validators } from '@angular/forms';
 import { UsersService } from '../users.service';
 import { Router } from '@angular/router';
+import * as moment from 'moment';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-create-user',
   templateUrl: './create-user.component.html',
@@ -22,18 +24,25 @@ export class CreateUserComponent implements OnInit {
   });
   constructor(
     private userService : UsersService,
-    private route : Router) { }
+    private route : Router,
+    private location : Location) { }
 
   ngOnInit(): void {
-    console.log(this.profileForm.value)
+    console.log('first',this.profileForm.value)
   }
 
   createProfile(){
-    this.profileForm.patchValue({createdAt:new Date().toISOString() })
+    console.log('profile',this.profileForm.valid);
+    
+    this.profileForm.patchValue({createdAt: moment(new Date().toISOString()).format })
     console.log(this.profileForm.value);
     this.userService.postUser(this.profileForm.value)
     this.route.navigate([''])
     
+  }
+
+  goBack(){
+    this.location.back();
   }
 
 }

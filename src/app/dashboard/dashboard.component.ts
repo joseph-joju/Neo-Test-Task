@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../users.service';
 import { Users } from '../users';
+import * as moment from 'moment';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -14,6 +15,7 @@ export class DashboardComponent implements OnInit {
   isSortedByDate: boolean=true;
   LoadMore: boolean= false;
   search: any;
+  p:number = 1;
 
   constructor(private userService:UsersService) { }
 
@@ -53,10 +55,10 @@ export class DashboardComponent implements OnInit {
     this.sortedUsers=[];
     this.isSortedByDate=!this.isSortedByDate
     if(this.isSortedByDate){
-      this.sortedUsers=this.users.sort((a,b) => a.createdAt > b.createdAt ? -1 : a > b ? 1 : 0)    
+      this.sortedUsers=this.users.sort((a,b) => moment(a.createdAt).format() > moment(b.createdAt).format() ? -1 : a > b ? 1 : 0)    
     }
     else{
-      this.sortedUsers=this.users.sort((a,b) => a.createdAt < b.createdAt ? -1 : a > b ? 1 : 0)    
+      this.sortedUsers=this.users.sort((a,b) => moment(a.createdAt).format() < moment(b.createdAt).format() ? -1 : a > b ? 1 : 0)    
     }
   }
 
@@ -75,5 +77,9 @@ export class DashboardComponent implements OnInit {
     }
   })
   this.sortedUsers = searchResult
+  }
+
+  myFunction( date:any ) {
+    return moment(date).format();
   }
 }

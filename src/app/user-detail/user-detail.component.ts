@@ -74,6 +74,12 @@ export class UserDetailComponent implements OnInit {
     
   }
 
+  deleteProfile(id: any) {
+    this.userService.deleteUser(id);
+    this.router.navigate([''])
+
+  }
+
   // pageRedirect(){
   //   return this.router.navigate(['detail',3])
   // }

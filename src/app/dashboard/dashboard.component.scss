@@ -27,10 +27,8 @@
   
   /* Style the counter cards */
   .card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
-    padding: 16px;
-    text-align: center;
-    background-color: #f1f1f1;
+   width: 50%;
+   padding: 10px;
   }
   
   /* Responsive columns - one column layout (vertical) on small screens */
@@ -42,21 +40,29 @@
     }
   }
 
-  .card{
-    margin: 10px auto;
-    display: flex;
-    justify-content: start;
-    flex-wrap: wrap;
-    gap: 10px
-}
 
 .card-detail{
-    display: inline-block;
-    border: 1px solid black;
-    padding: 8px;
-    min-width: 45%;
+    box-shadow: 11px 11px 31px -29px rgba(0,0,0,0.75);
+    border-radius: 15px;
+    border: 1px solid lightgray;
+    padding: 1rem;
+
 }
 
 .container{
-  float: right;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.header{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.inner-class{
+  display: flex;
+  justify-content: space-between;
 }

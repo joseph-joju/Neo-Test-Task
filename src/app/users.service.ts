@@ -16,7 +16,7 @@ export class UsersService {
     const users = this.http.get(this.url)
     return users
   }
-  getUser(id : number): Observable<any>{
+  getUser(id : string): Observable<any>{
    return this.http.get(`${this.url}/${id}`)
   }
   postUser(payload: Users){
@@ -24,8 +24,12 @@ export class UsersService {
       .subscribe()
   }
 
-  saveUser(payload: Users, id: number){
+  saveUser(payload: Users, id: string){
     return this.http.put(`${this.url}/${id}`,payload)
       .subscribe()
+  }
+
+  deleteUser(id: string) {
+    return this.http.delete(`${this.url}/${id}`).subscribe();
   }
 }
