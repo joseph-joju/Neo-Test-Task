@@ -29,7 +29,7 @@
 
 <div >
   <div class="container" >
-    <div  *ngFor="let user of sortedUsers | paginate: { itemsPerPage: 6, currentPage: p, totalItems: total }" class="card">
+    <div  *ngFor="let user of sortedUsers " class="card">
       <div class="card-detail">
         <a routerLink="/detail/{{user?.id}}" class="inner-class">
           <div>
