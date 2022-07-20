@@ -1,85 +1,103 @@
-import { Component, OnInit } from '@angular/core';
-import { UsersService } from '../users.service';
-import { Users } from '../users';
-import * as moment from 'moment';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from "@angular/core";
+import { UsersService } from "../users.service";
+import { Users } from "../users";
+import * as moment from "moment";
+import { first } from "rxjs";
+import { SubSink } from "subsink";
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  selector: "app-dashboard",
+  templateUrl: "./dashboard.component.html",
+  styleUrls: ["./dashboard.component.scss"],
 })
-export class DashboardComponent implements OnInit {
-
-  users!: Users[] ;
-  sortedUsers!: Users[];
-  isSortedByAge: boolean=true;
-  isSortedByDate: boolean=true;
-  LoadMore: boolean= false;
+export class DashboardComponent implements OnInit, OnDestroy {
+  users!: Users[];
+  sortedUsers!: Users[] | any;
+  isSortedByAge: boolean = true;
+  isSortedByDate: boolean = true;
+  LoadMore: boolean = false;
   search: any;
-  p:number = 1;
+  pageCount: number = 1;
+  dashboardSubs = new SubSink();
+  isSort = false;
+  page = 1;
+  sort: string = "";
+  order: string = "";
+  searchKey: string = "";
+  p = 1;
+  total: number;
+  @Output() pageChange: EventEmitter<number>= new EventEmitter();
 
-  constructor(private userService:UsersService) { }
+  constructor(private userService: UsersService) {}
 
   ngOnInit(): void {
     this.getUsers();
   }
 
-  getUsers(){
-    
-    this.userService.getUsers()
-      .subscribe(value =>{ this.users = value
-      
-        console.log(this.users);
-    this.sortedUsers=this.users
-
-      }
-        )
-        
-      
+  getUsers() {
+    this.dashboardSubs.add(
+      this.userService
+        .getUsers(this.page, this.order, this.sort, this.searchKey)
+        .subscribe((value) => {
+          this.sortedUsers = value.body;
+          this.total = value.headers.get('X-Total-Count');
+          
+          if(this.sortedUsers==[]){
+          }
+        })
+    );
+  }
+  getNextUsers() {
+    ++this.page;
+    this.getUsers();
   }
 
-  sortByAge(){
-    this.sortedUsers=[];
-    console.log('sort');
-    this.isSortedByAge=!this.isSortedByAge
-    if(this.isSortedByAge){
-      this.sortedUsers=this.users.sort((a,b) => a.age < b.age ? -1 : a > b ? 1 : 0)
-    }
-    else{
-      this.sortedUsers=this.users.sort((a,b) => a.age > b.age ? -1 : a > b ? 1 : 0)
-
-    }
-    
+  getPrevUsers() {
+    --this.page;
+    this.getUsers();
   }
 
-  sortByDate(){
-    this.sortedUsers=[];
-    this.isSortedByDate=!this.isSortedByDate
-    if(this.isSortedByDate){
-      this.sortedUsers=this.users.sort((a,b) => moment(a.createdAt).format() > moment(b.createdAt).format() ? -1 : a > b ? 1 : 0)    
+  sortByAge() {
+    this.sort = "age";
+    this.isSortedByAge = !this.isSortedByAge;
+    if (this.isSortedByAge) {
+      this.order = "asc";
+    } else {
+      this.order = "desc";
     }
-    else{
-      this.sortedUsers=this.users.sort((a,b) => moment(a.createdAt).format() < moment(b.createdAt).format() ? -1 : a > b ? 1 : 0)    
-    }
+
+    this.getUsers();
   }
 
-  loadMore(){
-    this.LoadMore = !this.LoadMore
+  sortByDate() {
+    this.sort = "createdAt";
+    this.isSortedByDate = !this.isSortedByDate;
+    if (this.isSortedByDate) {
+      this.order = "asc";
+    } else {
+      this.order = "desc";
+    }
+
+    this.getUsers();
   }
 
-  searchResources(searchText:any){
-    if(searchText === ''){
-      this.sortedUsers = this. users
-    }
-    let searchResult:Users[]=[]
-   this.sortedUsers.forEach((user:any)=>{
-    if(user.name.toLocaleLowerCase().includes(searchText)){
-      searchResult.push(user);
-    }
-  })
-  this.sortedUsers = searchResult
+  searchResources(searchText: any) {
+    // if (searchText === "") {
+    //   this.sortedUsers = this.users;
+    // }
+    // let searchResult: Users[] | any = [];
+    this.searchKey=searchText;
+    this.page=1
+    this.getUsers();
+
   }
 
-  myFunction( date:any ) {
+  myFunction(date: any) {
     return moment(date).format();
   }
+
+  ngOnDestroy(): void {
+    this.dashboardSubs.unsubscribe();
+  }
+  
+
 }

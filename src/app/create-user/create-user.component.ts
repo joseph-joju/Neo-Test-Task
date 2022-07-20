@@ -1,48 +1,47 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormControlName, FormGroup, Validators } from '@angular/forms';
-import { UsersService } from '../users.service';
-import { Router } from '@angular/router';
-import * as moment from 'moment';
-import { Location } from '@angular/common';
+import { Component, OnInit } from "@angular/core";
+import {
+  FormControl,
+  FormControlName,
+  FormGroup,
+  Validators,
+} from "@angular/forms";
+import { UsersService } from "../users.service";
+import { Router } from "@angular/router";
+import * as moment from "moment";
+import { Location } from "@angular/common";
 @Component({
-  selector: 'app-create-user',
-  templateUrl: './create-user.component.html',
-  styleUrls: ['./create-user.component.scss']
+  selector: "app-create-user",
+  templateUrl: "./create-user.component.html",
+  styleUrls: ["./create-user.component.scss"],
 })
 export class CreateUserComponent implements OnInit {
+  profileForm: FormGroup;
 
-  
-
-  profileForm = new FormGroup({
-    name: new FormControl('',Validators.required),
-    statusMessage: new FormControl('',Validators.required),
-    email: new FormControl('',Validators.required),
-    age: new FormControl('',Validators.required),
-    isPublic: new FormControl('',Validators.required),
-    createdAt: new FormControl(''),
-    avatarUrl:new FormControl('')
-  });
   constructor(
-    private userService : UsersService,
-    private route : Router,
-    private location : Location) { }
-
-  ngOnInit(): void {
-    console.log('first',this.profileForm.value)
+    private userService: UsersService,
+    private route: Router,
+    private location: Location
+  ) {
+    this.profileForm = new FormGroup({
+      name: new FormControl("", Validators.required),
+      statusMessage: new FormControl("", Validators.required),
+      email: new FormControl('',[Validators.required,Validators.email]),
+      age: new FormControl("", Validators.required),
+      isPublic: new FormControl("", Validators.required),
+      createdAt: new FormControl(""),
+      avatarUrl: new FormControl(""),
+    });
   }
 
-  createProfile(){
-    console.log('profile',this.profileForm.valid);
-    
-    this.profileForm.patchValue({createdAt: moment(new Date().toISOString()).format })
-    console.log(this.profileForm.value);
-    this.userService.postUser(this.profileForm.value)
-    this.route.navigate([''])
-    
+  ngOnInit(): void {}
+
+  createProfile() {
+    this.profileForm.patchValue({ createdAt: new Date() });
+    this.userService.postUser(this.profileForm.value);
+    this.route.navigate([""]);
   }
 
-  goBack(){
+  goBack() {
     this.location.back();
   }
-
 }

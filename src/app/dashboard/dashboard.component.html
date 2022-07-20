@@ -10,8 +10,16 @@
        [(ngModel)]="search"
        (ngModelChange)="searchResources(search)" >
        </div>
-    <div > <button (click)="sortByAge()"> sort by age</button> 
-      <button (click)="sortByDate()">sort by created date</button>
+    <div > 
+      <div class="dropdown">
+        <button class="dropbtn">Sort</button>
+        <div class="dropdown-content">
+          <a (click)="sortByAge()"> Sort By Age </a>
+          <a (click)="sortByDate()"> Sort By Created Date </a>
+        </div>
+      </div>
+      <!-- <button (click)="sortByAge()"> sort by age</button> 
+      <button (click)="sortByDate()">sort by created date</button> -->
     </div>
 
 
@@ -19,9 +27,9 @@
 
 
 
-<div *ngIf="!LoadMore; ">
+<div >
   <div class="container" >
-    <div  *ngFor="let user of sortedUsers | paginate: { itemsPerPage: 6, currentPage: p }" class="card">
+    <div  *ngFor="let user of sortedUsers | paginate: { itemsPerPage: 6, currentPage: p, totalItems: total }" class="card">
       <div class="card-detail">
         <a routerLink="/detail/{{user?.id}}" class="inner-class">
           <div>
@@ -30,18 +38,22 @@
           <div >
             <h1>{{user?.name}}</h1>
             <h2>{{user?.statusMessage}}</h2>
-            <h2>{{ myFunction(user?.createdAt) }}</h2>
+            <h2>{{ user?.createdAt | date : 'medium' }}</h2>
           </div>
         </a>
       </div>
     </div>
   </div>
-  <div style="align-items:center ">
-   <!-- <button (click)="loadMore()" >
-     <h3> Load More</h3>
-   </button> -->
-   <pagination-controls (pageChange)="p = $event"></pagination-controls>
-  </div>
+</div>
+<div class="footer" >
+  <!-- <pagination-controls (pageChange)="pageChange.emit($event)"></pagination-controls> -->
+
+  <button (click)="getPrevUsers()" [disabled]="page <= 1">
+     -prev
+  </button>
+  <button (click)="getNextUsers()" [disabled]="sortedUsers==[]">
+    next- >
+  </button>
 </div>
 <!-- <ng-template #elseTemplate>
   <div class="container" >

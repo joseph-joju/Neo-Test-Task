@@ -12,6 +12,8 @@
     <div class="container" >
        <h4><b>Name :<input type="text" value="{{userData?.name}}" name="" formControlName="name"></b></h4>
       <p><b>Status Message :</b> <input type="text" value="{{userData?.statusMessage}}" formControlName="statusMessage"> </p>
+      <p><b>Email :</b> <input type="text" value="{{userData?.email}}" formControlName="email"> </p>
+
       <p><b>Age:</b> <input type="text" value="{{userData?.age}}" formControlName="age"> </p>
       <p><b>isPublic:</b>  
         <input type="radio" id="True" value="True" formControlName="isPublic">True<br>   
@@ -27,6 +29,6 @@
 
     </div>
     <span >
-        <p><b>createdAt : </b>{{userData?.createdAt}}</p>
+        <p><b>createdAt : </b>{{userData?.createdAt | date : 'medium'}}</p>
     </span>
 </div>
