@@ -2,11 +2,11 @@
 <button (click)="goBack()"> <=Back</button>
 <div class="card" [formGroup]="profileForm">
     <div>
-        <input type="text" placeholder="enter profile Url" formControlName="avatarUrl">
+      <b>ProfileUrl :</b><input type="text" placeholder="enter profile Url" formControlName="avatarUrl" style="float:right ;">
         <img src=" http://www.gravatar.com/avatar/?d=mp" alt="Avatar" style="width:100%">
     </div>
     <div class="container" >
-       <h4><b>Name : </b><input type="text" formControlName="name"></h4>
+       <p><b>Name : </b><input type="text" formControlName="name"></p>
       <p><b>Status Message :</b><input type="text" formControlName="statusMessage"></p>
       <p><b>Email :</b><input type="text" formControlName="email"> </p>
       <p><b>Age:</b> <input type="text" formControlName="age"></p>
@@ -15,7 +15,10 @@
         <input type="radio" id="True" value="True" formControlName="isPublic">True<br>   
         <input type="radio" id="False" value="False" formControlName="isPublic">False<br>   
      </p>
-      <p> <button style="margin-left: 120px; margin-top: 80px;" (click)="createProfile()" [disabled]="!profileForm.valid" >Create</button> </p>
+     <div class="footer" >
+       <p> <button  (click)="createProfile()" [disabled]="!profileForm.valid"  style="color: green;">Create</button> </p>
+      </div>
     </div>
+  </div>
+
     
-</div>

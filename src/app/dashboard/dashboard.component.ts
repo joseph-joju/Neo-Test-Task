@@ -1,9 +1,16 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from "@angular/core";
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from "@angular/core";
 import { UsersService } from "../users.service";
 import { Users } from "../users";
-import * as moment from "moment";
-import { first } from "rxjs";
-import { SubSink } from "subsink";
+import { USERS_LIMIT } from "../users";
+import { Subscription } from "rxjs";
+
 @Component({
   selector: "app-dashboard",
   templateUrl: "./dashboard.component.html",
@@ -17,7 +24,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   LoadMore: boolean = false;
   search: any;
   pageCount: number = 1;
-  dashboardSubs = new SubSink();
   isSort = false;
   page = 1;
   sort: string = "";
@@ -25,7 +31,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   searchKey: string = "";
   p = 1;
   total: number;
-  @Output() pageChange: EventEmitter<number>= new EventEmitter();
+  limit = USERS_LIMIT;
+  subscriptionList: Subscription[] = [];
 
   constructor(private userService: UsersService) {}
 
@@ -34,15 +41,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   getUsers() {
-    this.dashboardSubs.add(
+    this.subscriptionList.push(
       this.userService
         .getUsers(this.page, this.order, this.sort, this.searchKey)
         .subscribe((value) => {
           this.sortedUsers = value.body;
-          this.total = value.headers.get('X-Total-Count');
-          
-          if(this.sortedUsers==[]){
-          }
+          this.total = value.headers.get("X-Total-Count");
+
+          // if(this.sortedUsers==[]){
+          // }
         })
     );
   }
@@ -59,6 +66,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   sortByAge() {
     this.sort = "age";
     this.isSortedByAge = !this.isSortedByAge;
+    this.page = 1;
     if (this.isSortedByAge) {
       this.order = "asc";
     } else {
@@ -71,6 +79,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   sortByDate() {
     this.sort = "createdAt";
     this.isSortedByDate = !this.isSortedByDate;
+    this.page = 1;
     if (this.isSortedByDate) {
       this.order = "asc";
     } else {
@@ -81,23 +90,26 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   searchResources(searchText: any) {
-    // if (searchText === "") {
-    //   this.sortedUsers = this.users;
-    // }
-    // let searchResult: Users[] | any = [];
-    this.searchKey=searchText;
-    this.page=1
+    this.searchKey = searchText;
+    this.page = 1;
     this.getUsers();
-
   }
 
-  myFunction(date: any) {
-    return moment(date).format();
+  default() {
+    this.page = 1;
+    this.order = "";
+    this.sort = "";
+    this.searchKey = "";
+    this.getUsers();
+  }
+
+  pageChange(pageNo: number) {
+    this.page = pageNo;
+
+    this.getUsers();
   }
 
   ngOnDestroy(): void {
-    this.dashboardSubs.unsubscribe();
+    this.subscriptionList.forEach(i => i.unsubscribe());
   }
-  
-
 }

@@ -37,7 +37,7 @@ export class CreateUserComponent implements OnInit {
 
   createProfile() {
     this.profileForm.patchValue({ createdAt: new Date() });
-    this.userService.postUser(this.profileForm.value);
+    this.userService.postUser(this.profileForm.value).subscribe();
     this.route.navigate([""]);
   }
 

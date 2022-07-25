@@ -28,7 +28,8 @@
   /* Style the counter cards */
   .card {
    width: 50%;
-   padding: 10px;
+   padding: 60px;
+   
   }
   
   /* Responsive columns - one column layout (vertical) on small screens */
@@ -42,11 +43,17 @@
 
 
 .card-detail{
-    box-shadow: 11px 11px 31px -29px rgba(0,0,0,0.75);
+    box-shadow: 11px 11px 10px -2px rgba(0,0,0,0.75);
     border-radius: 15px;
     border: 1px solid lightgray;
     padding: 1rem;
+    background-color: lightgray;
+    color: blue;
 
+}
+
+.card-detail:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
 .container{
@@ -58,7 +65,7 @@
 .header{
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -69,7 +76,8 @@
 
 .footer{
   display: flex;
-  justify-content: space-between;
+  justify-content:center;
+  
 }
 
 .dropdown {
@@ -78,11 +86,13 @@
 }
 
 .dropbtn {
-  background-color: #04AA6D;
+  background-color: gray;
   color: white;
   padding: 16px;
-  font-size: 16px;
+  font-size: 24px;
+  width: 100%;
   border: none;
+  margin-right:90px;
 }
 .dropdown-content {
   display: none;
@@ -101,4 +111,9 @@
 
 .dropdown-content a:hover {background-color: #ddd;}
 .dropdown:hover .dropdown-content {display: block;}
-.dropdown:hover .dropbtn {background-color: #3e8e41;}
+.dropdown:hover .dropbtn {
+  // background-color: lightblue;
+  filter: drop-shadow(8px 8px 10px gray);
+  color: blue;
+
+}

@@ -4,8 +4,15 @@
     transition: 0.3s;
     display: flex;
     align-content: center;
-    width: 80%;
-    margin-top: 10%;
+    width: 60%;
+    margin-top: 5%;
+    margin-left: 15%;
+    box-shadow: 11px 11px 10px -2px rgba(0,0,0,0.75);
+    border-radius: 15px;
+    border: 1px solid lightgray;
+    padding: 1rem;
+    background-color: lightgray;
+    color: blue;
   }
   
   /* On mouse-over, add a deeper shadow */
@@ -17,4 +24,36 @@
   .container {
     margin-right: 75px;
     padding: 2px 16px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .container b{
+    padding-left: 30px;
+    padding-right: 30px;
+    color: blue;
+  }
+
+  .container input{
+    padding-left: 10px;
+  }
+
+  .container p{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .container span{
+    display: flex;
+    flex-direction:row;
+    justify-content: space-around;
+  }
+
+  
+
+
+  .footer{
+    display: flex;
+    justify-content:flex-end;
+    
   }

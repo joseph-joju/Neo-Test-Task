@@ -5,30 +5,33 @@
 
 <div class="card" [formGroup]="profileForm">
     <div>
-        <input type="text" placeholder="enter profile Url" formControlName="avatarUrl">
+      <b>ProfileUrl :</b><input type="text" placeholder="enter profile Url" formControlName="avatarUrl" style="float:right ;">
         <img src="{{userData?.avatarUrl}} " alt="Avatar" style="width:100%">
     </div>
     
     <div class="container" >
-       <h4><b>Name :<input type="text" value="{{userData?.name}}" name="" formControlName="name"></b></h4>
+       <p><b>Name :</b> <input type="text" value="{{userData?.name}}" name="" formControlName="name"></p>
       <p><b>Status Message :</b> <input type="text" value="{{userData?.statusMessage}}" formControlName="statusMessage"> </p>
       <p><b>Email :</b> <input type="text" value="{{userData?.email}}" formControlName="email"> </p>
 
       <p><b>Age:</b> <input type="text" value="{{userData?.age}}" formControlName="age"> </p>
+      <p><b>createdAt : </b>{{userData?.createdAt | date : 'medium'}}</p>
+
       <p><b>isPublic:</b>  
-        <input type="radio" id="True" value="True" formControlName="isPublic">True<br>   
-        <input type="radio" id="False" value="False" formControlName="isPublic">False<br>  
+        <span>
+            <input type="radio" id="True" value="True" formControlName="isPublic">True
+            <input type="radio" id="False" value="False" formControlName="isPublic">False  
+        </span>
+
      </p>
       
-      <span style="float:right">
+      <div class="footer">
           <button (click)="saveProfile()" style="color : blue"> Save</button>
           <div>
-              <button (click)="deleteProfile(userData?.id)" style="color:red"> Delete </button>
+              <button (click)="deleteProfile(userData?.id)" style="color:red;float: right"   > Delete </button>
           </div>
-      </span>
+        </div>
 
     </div>
-    <span >
-        <p><b>createdAt : </b>{{userData?.createdAt | date : 'medium'}}</p>
-    </span>
+   
 </div>

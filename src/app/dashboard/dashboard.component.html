@@ -1,5 +1,6 @@
 <div class="header">
-    <div > <h1> Users </h1> 
+    <div >
+       <h1 (click)="default()"> Users </h1> 
       <a routerLink="/create">
         <button> Create User</button>
       </a>
@@ -29,11 +30,16 @@
 
 <div >
   <div class="container" >
-    <div  *ngFor="let user of sortedUsers " class="card">
+    <div  *ngFor="let user of sortedUsers | paginate : {
+      itemsPerPage: limit,
+      currentPage: page,
+      totalItems: total
+      }" 
+      class="card">
       <div class="card-detail">
         <a routerLink="/detail/{{user?.id}}" class="inner-class">
           <div>
-            <img src="{{user?.avatarUrl}}" alt="avatar" style="height: 70%;">
+            <img src="{{user?.avatarUrl}}" alt="avatar" style="height: 100%;">
           </div>
           <div >
             <h1>{{user?.name}}</h1>
@@ -46,33 +52,14 @@
   </div>
 </div>
 <div class="footer" >
-  <!-- <pagination-controls (pageChange)="pageChange.emit($event)"></pagination-controls> -->
+  <pagination-controls (pageChange)="pageChange($event)"></pagination-controls>
 
-  <button (click)="getPrevUsers()" [disabled]="page <= 1">
+  <!-- <button (click)="getPrevUsers()" [disabled]="page <= 1">
      -prev
   </button>
   <button (click)="getNextUsers()" [disabled]="sortedUsers==[]">
     next- >
-  </button>
+  </button> -->
 </div>
-<!-- <ng-template #elseTemplate>
-  <div class="container" >
-    <div  *ngFor="let user of sortedUsers" class="card">
-      <div class="card-detail">
-        <a routerLink="/detail/{{user.id}}" class="inner-class">
-          <img src="{{user.avatarUrl}}" alt="avatar" style="height: 70%;">
-          <span >
-            <h1>{{user.name}}</h1>
-            <h2>{{user.statusMessage}}</h2>
-            <h2>{{ myFunction(user?.createdAt) }}</h2>
-          </span>
-        </a>
-      </div>
-    </div>
-  </div>
-  <div style="margin-left:80%">
-   <button (click)="loadMore()">
-     <h3> Load Less</h3>
-   </button>
-  </div></ng-template> -->
+
   

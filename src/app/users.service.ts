@@ -48,31 +48,16 @@ export class UsersService {
   }
 
   
-  postUser(payload: Users) {
-    return this.http.post(`${this.baseUrl}users`, payload).subscribe();
+  postUser(payload: Users): Observable<any> {
+    return this.http.post(`${this.baseUrl}users`, payload);
   }
 
-  saveUser(payload: Users, id: string) {
-    return this.http.put(`${this.baseUrl}users/${id}`, payload).subscribe();
+  saveUser(payload: Users, id: string) : Observable<any>{
+    return this.http.put(`${this.baseUrl}users/${id}`, payload);
   }
 
-  deleteUser(id: string) {
-    return this.http.delete(`${this.baseUrl}users/${id}`).subscribe();
+  deleteUser(id: string): Observable<any> {
+    return this.http.delete(`${this.baseUrl}users/${id}`);
   }
-  // sortAgeUser(order?: string, page?: number) {
-  //   return this.http.get(
-  //     `${this.baseUrl}users?_sort=age&_order=${order}_page=${page}&_limit=${this.limit}`
-  //   );
-  // }
-  // sortDateUser(order: string) {
-  //   return this.http.get(
-  //     `${this.baseUrl}users?_sort=createdAt&_order=${order}`
-  //   );
-  // }
-
-  // searchUser(search:string){
-  //   return this.http.get(
-  //   `${this.baseUrl}users?name_like=${search}`
-  //   );
-  // }
+ 
 }
