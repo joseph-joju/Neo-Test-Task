@@ -5,7 +5,7 @@ import {
   FormGroup,
   Validators,
 } from "@angular/forms";
-import { UsersService } from "../users.service";
+import { UsersService } from "../services/users.service";
 import { Router } from "@angular/router";
 import * as moment from "moment";
 import { Location } from "@angular/common";

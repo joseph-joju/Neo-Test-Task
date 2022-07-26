@@ -6,7 +6,7 @@ import {
   OnInit,
   Output,
 } from "@angular/core";
-import { UsersService } from "../users.service";
+import { UsersService } from "../services/users.service";
 import { Subscription } from "rxjs";
 import { Users } from "../shared/Interfaces/users";
 import { INITIAL_PAGE, USERS_LIMIT } from "../shared/constants/url_params";
