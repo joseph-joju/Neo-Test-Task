@@ -7,9 +7,9 @@ import {
   Output,
 } from "@angular/core";
 import { UsersService } from "../users.service";
-import { Users } from "../users";
-import { USERS_LIMIT } from "../users";
 import { Subscription } from "rxjs";
+import { Users } from "../shared/Interfaces/users";
+import { INITIAL_PAGE, USERS_LIMIT } from "../shared/constants/url_params";
 
 @Component({
   selector: "app-dashboard",
@@ -23,14 +23,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
   isSortedByDate: boolean = true;
   LoadMore: boolean = false;
   search: any;
-  pageCount: number = 1;
   isSort = false;
-  page = 1;
+  page = INITIAL_PAGE;
   sort: string = "";
   order: string = "";
   searchKey: string = "";
   p = 1;
-  total: number;
+  total: string;
   limit = USERS_LIMIT;
   subscriptionList: Subscription[] = [];
 
@@ -46,7 +45,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         .getUsers(this.page, this.order, this.sort, this.searchKey)
         .subscribe((value) => {
           this.sortedUsers = value.body;
-          this.total = value.headers.get("X-Total-Count");
+          this.total = value.headers.get("X-Total-Count") || '0';
 
           // if(this.sortedUsers==[]){
           // }

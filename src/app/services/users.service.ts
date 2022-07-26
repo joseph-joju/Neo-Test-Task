@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpResponse } from "@angular/common/http";
 import { filter, map, Observable } from "rxjs";
-import { Users } from "./shared/Interfaces/users";
-import { BASE_URL, INITIAL_PAGE, USERS_LIMIT } from "./shared/constants/url_params";
+import { Users } from "../shared/Interfaces/users";
+import { BASE_URL, INITIAL_PAGE, USERS_LIMIT } from "../shared/constants/url_params";
 
 
 @Injectable({
