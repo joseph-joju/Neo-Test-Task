@@ -12,7 +12,7 @@ export class UsersService {
   baseUrl = BASE_URL;
   page = INITIAL_PAGE;
   limit = USERS_LIMIT;
-
+  sort = 'age';
   constructor(private http: HttpClient) {}
 
   /**
@@ -38,6 +38,10 @@ export class UsersService {
     }
     
     return this.http.get<Users>(url, { observe: "response" , responseType: 'json'});
+  }
+
+  getUsersOnly(){
+    return this.http.get(`${this.baseUrl}users`)
   }
 
   /**

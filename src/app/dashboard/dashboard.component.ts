@@ -46,9 +46,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
         .subscribe((value) => {
           this.sortedUsers = value.body;
           this.total = value.headers.get("X-Total-Count") || '0';
-
-          // if(this.sortedUsers==[]){
-          // }
         })
     );
   }

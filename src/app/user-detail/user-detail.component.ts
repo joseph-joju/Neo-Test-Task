@@ -79,6 +79,10 @@ export class UserDetailComponent implements OnInit, OnDestroy {
     this.router.navigate([""]);
   }
 
+  authtest(){
+    this.router.navigate(['authtest']);
+  }
+
   ngOnDestroy(): void {
     this.subscriptionList.forEach(i => i.unsubscribe());
   }

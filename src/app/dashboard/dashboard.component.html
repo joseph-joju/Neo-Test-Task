@@ -2,7 +2,7 @@
     <div >
        <h1 (click)="default()"> Users </h1> 
       <a routerLink="/create">
-        <button> Create User</button>
+        <button appHighlight> Create User</button>
       </a>
      </div>
     <div > <input
@@ -13,7 +13,7 @@
        </div>
     <div > 
       <div class="dropdown">
-        <button class="dropbtn">Sort</button>
+        <button appHighlight class="dropbtn">Sort</button>
         <div class="dropdown-content">
           <a (click)="sortByAge()"> Sort By Age </a>
           <a (click)="sortByDate()"> Sort By Created Date </a>
