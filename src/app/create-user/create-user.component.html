@@ -1,6 +1,10 @@
-<h2 style="margin-left:40%"> Create User</h2>
-<button (click)="goBack()"> <=Back</button>
-<div class="card" [formGroup]="profileForm">
+<div class="header">
+  <button (click)="goBack()"> <=Back</button>
+  <div>
+    <h2> Create User</h2>
+  </div>
+</div>
+  <div class="card" [formGroup]="profileForm">
     <div>
       <b>ProfileUrl :</b><input type="text" placeholder="enter profile Url" formControlName="avatarUrl" style="float:right ;">
         <img src=" http://www.gravatar.com/avatar/?d=mp" alt="Avatar" style="width:100%">

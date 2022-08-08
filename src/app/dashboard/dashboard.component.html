@@ -1,16 +1,17 @@
 <div class="header">
     <div >
-       <h1 (click)="default()"> Users </h1> 
-      <a routerLink="/create">
-        <button appHighlight> Create User</button>
+      <a routerLink="/create" class="dropbtn" >
+        <button appHighlight > Create User</button>
       </a>
      </div>
-    <div > <input
+    <div class="mid-header">
+      <h1 (click)="default()"> Users </h1> 
+       <input
        type="text" 
        placeholder="Search by name"
        [(ngModel)]="search"
        (ngModelChange)="searchResources(search)" >
-       </div>
+    </div>
     <div > 
       <div class="dropdown">
         <button appHighlight class="dropbtn">Sort</button>
@@ -38,8 +39,8 @@
       class="card">
       <div class="card-detail">
         <a routerLink="/detail/{{user?.id}}" class="inner-class">
-          <div>
-            <img src="{{user?.avatarUrl}}" alt="avatar" style="height: 100%;">
+          <div >
+            <img class="pro-pic" src="{{user?.avatarUrl}}" alt="avatar" >
           </div>
           <div >
             <h1>{{user?.name}}</h1>

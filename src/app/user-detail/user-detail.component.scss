@@ -1,3 +1,10 @@
+.header{
+  width: 100%;
+  display: flex;
+  justify-content: space-around; 
+  align-items: center;
+}
+
 .card {
     /* Add shadows to create the "card" effect */
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -35,6 +42,7 @@
   }
 
   .container input{
+    width: 100%;
     padding-left: 10px;
   }
 

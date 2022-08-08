@@ -1,7 +1,7 @@
-
-<!-- <button (click)="pageRedirect()">Redirect</button> -->
-<h1  style="margin-left:20% ;">User Details</h1>
-<button (click)="goBack()"> <=Back</button>
+<div class="header">
+    <button (click)="goBack()"> <=Back</button>
+    <h1  style="margin-left:20% ;">User Details</h1>
+</div>
 
 <div class="card" [formGroup]="profileForm">
     <div>
@@ -29,6 +29,10 @@
           <button appHighlight (click)="saveProfile()"> Save</button>
           <div>
               <button (click)="deleteProfile(userData?.id)" style="color:red;float: right"   > Delete </button>
+          </div>
+
+          <div>
+            
           </div>
           
         </div>
