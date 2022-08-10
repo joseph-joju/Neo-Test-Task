@@ -33,6 +33,18 @@ export const reducer = createReducer(
     on(PeopleAcions.loadUserListFail,(state)=>({
         ...state,
         loading:false
+    })),
+    on(PeopleAcions.addUser,state=>({
+        ...state,
+        loading:true
+     })),
+    on(PeopleAcions.addUserSuccess,(state,{payload})=>({
+        ...state,
+        loading:false,
+        data:payload
+    })),
+    on(PeopleAcions.addUserFail,(state)=>({
+        ...state
     }))
 );
 

@@ -1,8 +1,6 @@
 <div class="header">
-    <div >
-      <a routerLink="/create" class="dropbtn" >
-        <button appHighlight > Create User</button>
-      </a>
+    <div class="dropdown" >
+        <button appHighlight  routerLink="/create" class="dropbtn" > Create User</button>
      </div>
     <div class="mid-header">
       <h1 (click)="default()"> Users </h1> 
@@ -36,9 +34,9 @@
       currentPage: page,
       totalItems: total
       }" 
-      class="card">
-      <div class="card-detail">
-        <a routerLink="/detail/{{user?.id}}" class="inner-class">
+      class="card" >
+      <div class="card-detail" [mouseHover]="hoverColor">
+        <a routerLink="/detail/{{user?.id}}" class="inner-class" >
           <div >
             <img class="pro-pic" src="{{user?.avatarUrl}}" alt="avatar" >
           </div>

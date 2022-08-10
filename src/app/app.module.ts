@@ -19,6 +19,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { UserListEffect } from './store/user-list effects';
 import { reducer } from './store/user-list.reducers';
+import { MouseHoverDirective } from './shared/directives/mouse-hover.directive';
 
 
 
@@ -30,7 +31,8 @@ import { reducer } from './store/user-list.reducers';
     CreateUserComponent,
     AuthtestComponent,
     HighlightDirective,
-    AppNotDirective
+    AppNotDirective,
+    MouseHoverDirective
   ],
   imports: [
     BrowserModule,

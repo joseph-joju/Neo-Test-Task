@@ -37,6 +37,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   limit = USERS_LIMIT;
   subscriptionList: Subscription[] = [];
   userList: any;
+  hoverColor='lightblue'
 
   constructor(
     private userService: UsersService,
@@ -47,10 +48,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.getUsers();
 
    
- 
-  }
-
-  getUsers() {
     this.user_store.dispatch(loadUserList())
     this.user_store.select(getPeople).subscribe((data) => {
       if (data) {
@@ -59,6 +56,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
         
       }
     });
+ 
+  }
+
+  getUsers() {
    
     this.subscriptionList.push(
       this.userService
