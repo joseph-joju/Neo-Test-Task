@@ -11,7 +11,9 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'detail/:id', component: UserDetailComponent },
   { path: 'create', component: CreateUserComponent },
-  { path: 'authtest', component: AuthtestComponent, canActivate: [AuthGuard]}
+  // { path: 'authtest', component: AuthtestComponent, canActivate: [AuthGuard]},
+  {path: 'authtest',
+  loadChildren: () => import('./modules/authenticated/authenticated.module').then(m => m.AuthenticatedModule)}
 ];
 
 @NgModule({

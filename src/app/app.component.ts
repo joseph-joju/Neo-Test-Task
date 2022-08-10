@@ -12,7 +12,5 @@ export class AppComponent {
 
   constructor(){
     let now = moment();
-    console.log('hello world', now.format());
-    
   }
 }

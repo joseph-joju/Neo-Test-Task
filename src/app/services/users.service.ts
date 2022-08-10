@@ -54,7 +54,7 @@ export class UsersService {
   }
 
   
-  postUser(payload: Users): Observable<Users> {
+  postUser(payload: any): Observable<Users> {
     return this.http.post<Users>(`${this.baseUrl}users`, payload);
   }
 

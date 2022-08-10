@@ -12,7 +12,9 @@
     <div class="container" >
        <p><b>Name :</b> <input type="text" value="{{userData?.name}}" name="" formControlName="name"></p>
       <p><b>Status Message :</b> <input type="text" value="{{userData?.statusMessage}}" formControlName="statusMessage"> </p>
-      <p><b>Email :</b> <input type="text" value="{{userData?.email}}" formControlName="email"> </p>
+      <button appHighlight *appNot="showcondition" (click)="showcondition=!showcondition"> Show email</button> 
+      <button appHighlight *appNot="!showcondition" (click)="showcondition=!showcondition" >Hide email</button>
+      <p><b>Email :</b> <input *appNot="!showcondition" type="text" value="{{userData?.email}}" formControlName="email"> </p> 
 
       <p><b>Age:</b> <input type="text" value="{{userData?.age}}" formControlName="age"> </p>
       <p><b>createdAt : </b>{{userData?.createdAt | date : 'medium'}}</p>
@@ -27,6 +29,9 @@
       
       <div class="footer">
           <button appHighlight (click)="saveProfile()"> Save</button>
+          <div>
+            <button (click)="authtest()"> auth</button>
+          </div>
           <div>
               <button (click)="deleteProfile(userData?.id)" style="color:red;float: right"   > Delete </button>
           </div>

@@ -10,6 +10,10 @@ import { UsersService } from "../services/users.service";
 import { Subscription } from "rxjs";
 import { Users } from "../shared/Interfaces/users";
 import { INITIAL_PAGE, USERS_LIMIT } from "../shared/constants/url_params";
+import { Store } from "@ngrx/store";
+import { loadUserList } from "../store/user-list.actions";
+import { getPeople } from "../store/user-list.selectors";
+import { User } from "../store/user-list.reducers";
 
 @Component({
   selector: "app-dashboard",
@@ -32,14 +36,30 @@ export class DashboardComponent implements OnInit, OnDestroy {
   total: string;
   limit = USERS_LIMIT;
   subscriptionList: Subscription[] = [];
+  userList: any;
 
-  constructor(private userService: UsersService) {}
+  constructor(
+    private userService: UsersService,
+    private user_store: Store<User>
+    ) {}
 
   ngOnInit(): void {
     this.getUsers();
+
+   
+ 
   }
 
   getUsers() {
+    this.user_store.dispatch(loadUserList())
+    this.user_store.select(getPeople).subscribe((data) => {
+      if (data) {
+        this.userList = data;
+        console.log('from store', this.userList);
+        
+      }
+    });
+   
     this.subscriptionList.push(
       this.userService
         .getUsers(this.page, this.order, this.sort, this.searchKey)

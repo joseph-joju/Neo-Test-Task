@@ -8,27 +8,18 @@ import { UsersService } from '../services/users.service';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  id: string;
+  id: any;
   constructor(
-    private routes: ActivatedRoute,
+    private route: ActivatedRoute,
     private router: Router
-  ){}
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      this.routes.queryParams.subscribe((param: Params)=>{
-        this.id = param["id"]
-        console.log(param);
-        
-        console.log(this.id);
-        
-      })
-      return true
-      if (this.id  === '14'){
-        this.router.navigate([''])
-        return true
-      }
-      return false
+  ){
+
   }
+  canActivate(  
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree 
+  {
+      return false
+      }
   
 }

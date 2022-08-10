@@ -16,6 +16,8 @@ export class UserDetailComponent implements OnInit, OnDestroy {
   id: string | any;
   userData!: Users;
   subscriptionList: Subscription[] = [];
+  showcondition = true;
+  
 
   profileForm = new FormGroup({
     name: new FormControl(""),
@@ -35,6 +37,9 @@ export class UserDetailComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    const filter = this.route.snapshot.params['id'];
+    console.log(filter);
+    console.log('kkkk')
     this.getUser();
   }
 
