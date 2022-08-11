@@ -5,14 +5,14 @@ import {
   FormGroup,
   Validators,
 } from "@angular/forms";
-import { UsersService } from "../services/users.service";
+import { UsersService } from "../../../services/users.service";
 import { Router } from "@angular/router";
 import * as moment from "moment";
 import { Location } from "@angular/common";
 import { Subscription } from "rxjs";
 import { Store } from "@ngrx/store";
-import { User } from "../store/user-list.reducers";
-import { addUser } from "../store/user-list.actions";
+import { User } from "../../../store/user-list.reducers";
+import { addUser } from "../../../store/user-list.actions";
 @Component({
   selector: "app-create-user",
   templateUrl: "./create-user.component.html",
@@ -39,7 +39,9 @@ export class CreateUserComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log('in - user component')
+  }
 
   createProfile() {
     this.profileForm.patchValue({ createdAt: new Date() });

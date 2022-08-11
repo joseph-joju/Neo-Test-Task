@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Location } from "@angular/common";
 import { ActivatedRoute, Params, Router } from "@angular/router";
-import { UsersService } from "../services/users.service";
+import { UsersService } from "../../../services/users.service";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Subscription } from "rxjs";
-import { Users } from "../shared/Interfaces/users";
+import { Users } from "../../../shared/Interfaces/users";
 
 @Component({
   selector: "app-user-detail",

@@ -6,21 +6,25 @@ import {
   OnInit,
   Output,
 } from "@angular/core";
-import { UsersService } from "../services/users.service";
+import { UsersService } from "../../../services/users.service";
 import { Subscription } from "rxjs";
-import { Users } from "../shared/Interfaces/users";
-import { INITIAL_PAGE, USERS_LIMIT } from "../shared/constants/url_params";
+import { Users } from "../../../shared/Interfaces/users";
+import { INITIAL_PAGE, USERS_LIMIT } from "../../../shared/constants/url_params";
 import { Store } from "@ngrx/store";
-import { loadUserList } from "../store/user-list.actions";
-import { getPeople } from "../store/user-list.selectors";
-import { User } from "../store/user-list.reducers";
+import { loadUserList } from "../../../store/user-list.actions";
+import { getPeople } from "../../../store/user-list.selectors";
+import { User } from "../../../store/user-list.reducers";
 
 @Component({
-  selector: "app-dashboard",
-  templateUrl: "./dashboard.component.html",
-  styleUrls: ["./dashboard.component.scss"],
+  selector: 'app-users-list',
+  templateUrl: './users-list.component.html',
+  styleUrls: ['./users-list.component.scss']
 })
-export class DashboardComponent implements OnInit, OnDestroy {
+export class UsersListComponent implements OnInit {
+
+  
+
+
   users!: Users[];
   sortedUsers!: Users[] | any;
   isSortedByAge: boolean = true;
@@ -130,3 +134,4 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.subscriptionList.forEach(i => i.unsubscribe());
   }
 }
+
