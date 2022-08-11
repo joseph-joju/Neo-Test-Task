@@ -47,6 +47,8 @@ export class UserDetailComponent implements OnInit, OnDestroy {
     this.subscriptionList.push(
       this.route.params.subscribe((param: Params) => {
         this.id = param["id"];
+        console.log(this.id);
+        
       })
     );
 

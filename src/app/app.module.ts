@@ -9,21 +9,12 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { httpInterceptorProviders } from './interceptor_index';
 import { AuthtestComponent } from './authtest/authtest.component';
-import { HighlightDirective } from './shared/directives/button-borders'
-import { AppNotDirective } from './shared/directives/app-not.directive';
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
-import { UserListEffect } from './store/user-list effects';
-import { reducer } from './store/user-list.reducers';
-
 
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthtestComponent,
-    HighlightDirective,
-    AppNotDirective,
   ],
   imports: [
     BrowserModule,
@@ -31,8 +22,7 @@ import { reducer } from './store/user-list.reducers';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    StoreModule.forRoot({"user": reducer}),
-    EffectsModule.forRoot([UserListEffect]),
+    
   ],
   providers: [HttpClientModule, RouterTestingModule,httpInterceptorProviders
   

@@ -9,7 +9,13 @@ import { UserDetailComponent } from "./user-detail/user-detail.component";
 import { CreateUserComponent } from "./create-user/create-user.component";
 import { HttpClientModule } from "@angular/common/http";
 import { UsersListComponent } from './users-list/users-list.component';
-
+import { StoreModule } from "@ngrx/store";
+import { EffectsModule } from "@ngrx/effects";
+import { UserListEffect } from "src/app/store/user-list effects";
+import { reducer } from "src/app/store/user-list.reducers";
+import { AppNotDirective } from "src/app/shared/directives/app-not.directive"
+import { HighlightDirective } from "src/app/shared/directives/button-borders";
+ 
 
 const routes: Routes = [
   {
@@ -29,7 +35,7 @@ const routes: Routes = [
     
     {
       path: "detail/:id",
-      component: CreateUserComponent,
+      component: UserDetailComponent,
     },]
   },
   ];
@@ -41,6 +47,9 @@ const routes: Routes = [
     UserDetailComponent,
     CreateUserComponent,
     UsersListComponent,
+    AppNotDirective,
+    HighlightDirective,
+
     
   ],
   imports: [
@@ -49,7 +58,9 @@ const routes: Routes = [
     NgxPaginationModule,
     ReactiveFormsModule,
     FormsModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    StoreModule.forRoot({"user": reducer}),
+    EffectsModule.forRoot([UserListEffect]),
   ],
   exports: [],
 })
