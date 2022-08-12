@@ -6,18 +6,18 @@
 <div class="card" [formGroup]="profileForm">
     <div>
       <b>ProfileUrl :</b><input type="text" placeholder="enter profile Url" formControlName="avatarUrl" style="float:right ;">
-        <img src="{{userData.avatarUrl}} " alt="Avatar" style="width:100%">
+        <img src="{{userData?.avatarUrl}} " alt="Avatar" style="width:100%">
     </div>
     
     <div class="container" >
-       <p><b>Name :</b> <input type="text" value="{{userData.name}}" name="" formControlName="name"></p>
-      <p><b>Status Message :</b> <input type="text" value="{{userData.statusMessage}}" formControlName="statusMessage"> </p>
+       <p><b>Name :</b> <input type="text" value="{{userData?.name}}" name="" formControlName="name"></p>
+      <p><b>Status Message :</b> <input type="text" value="{{userData?.statusMessage}}" formControlName="statusMessage"> </p>
       <button appHighlight *appNot="showcondition" (click)="showcondition=!showcondition"> Show email</button> 
       <button appHighlight *appNot="!showcondition" (click)="showcondition=!showcondition" >Hide email</button>
-      <p><b>Email :</b> <input *appNot="!showcondition" type="text" value="{{userData.email}}" formControlName="email"> </p> 
+      <p><b>Email :</b> <input *appNot="!showcondition" type="text" value="{{userData?.email}}" formControlName="email"> </p> 
 
-      <p><b>Age:</b> <input type="text" value="{{userData.age}}" formControlName="age"> </p>
-      <p><b>createdAt : </b>{{userData.createdAt | date : 'medium'}}</p>
+      <p><b>Age:</b> <input type="text" value="{{userData?.age}}" formControlName="age"> </p>
+      <p><b>createdAt : </b>{{userData?.createdAt | date : 'medium'}}</p>
 
       <p><b>isPublic:</b>  
         <span>

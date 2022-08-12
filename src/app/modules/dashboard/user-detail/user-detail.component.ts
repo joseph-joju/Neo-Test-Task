@@ -38,8 +38,6 @@ export class UserDetailComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     const filter = this.route.snapshot.params['id'];
-    console.log(filter);
-    console.log('kkkk')
     this.getUser();
   }
 
@@ -47,7 +45,6 @@ export class UserDetailComponent implements OnInit, OnDestroy {
     this.subscriptionList.push(
       this.route.params.subscribe((param: Params) => {
         this.id = param["id"];
-        console.log(this.id);
         
       })
     );

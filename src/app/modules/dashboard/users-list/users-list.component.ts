@@ -21,10 +21,6 @@ import { User } from "../../../store/user-list.reducers";
   styleUrls: ['./users-list.component.scss']
 })
 export class UsersListComponent implements OnInit {
-
-  
-
-
   users!: Users[];
   sortedUsers!: Users[] | any;
   isSortedByAge: boolean = true;

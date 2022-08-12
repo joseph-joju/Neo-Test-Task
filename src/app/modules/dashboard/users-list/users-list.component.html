@@ -3,12 +3,16 @@
         <button appHighlight  routerLink="/dashboard/create" class="dropbtn" > Create User</button>
      </div>
     <div class="mid-header">
-      <h1 (click)="default()"> Users </h1> 
-       <input
-       type="text" 
-       placeholder="Search by name"
-       [(ngModel)]="search"
-       (ngModelChange)="searchResources(search)" >
+        <div>
+            <h1 (click)="default()"> Users </h1> 
+        </div>
+        <div>
+            <input
+            type="text" 
+            placeholder="Search by name"
+            [(ngModel)]="search"
+            (ngModelChange)="searchResources(search)" >
+        </div>
     </div>
     <div > 
       <div class="dropdown">
