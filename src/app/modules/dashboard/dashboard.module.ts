@@ -15,6 +15,8 @@ import { UserListEffect } from "src/app/store/user-list effects";
 import { reducer } from "src/app/store/user-list.reducers";
 import { AppNotDirective } from "src/app/shared/directives/app-not.directive"
 import { HighlightDirective } from "src/app/shared/directives/button-borders";
+import { AuthtestComponent } from './authtest/authtest.component';
+import { AuthGuard } from "src/app/auth/auth.guard";
  
 
 const routes: Routes = [
@@ -36,7 +38,17 @@ const routes: Routes = [
     {
       path: "detail/:id",
       component: UserDetailComponent,
-    },]
+
+      children:[
+        {
+          path:"authtest",
+          component:AuthtestComponent,
+          canActivate:[AuthGuard]
+        },
+      ]
+    },
+   
+  ]
   },
   ];
 
@@ -49,6 +61,7 @@ const routes: Routes = [
     UsersListComponent,
     AppNotDirective,
     HighlightDirective,
+    AuthtestComponent,
 
     
   ],

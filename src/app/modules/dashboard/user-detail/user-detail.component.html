@@ -1,47 +1,91 @@
 <div class="header">
-    <button (click)="goBack()"> <=Back</button>
-    <h1  style="margin-left:20% ;">User Details</h1>
+  <button (click)="goBack()"><=Back</button>
+  <h1 style="margin-left: 20%">User Details</h1>
 </div>
 
 <div class="card" [formGroup]="profileForm">
-    <div>
-      <b>ProfileUrl :</b><input type="text" placeholder="enter profile Url" formControlName="avatarUrl" style="float:right ;">
-        <img src="{{userData?.avatarUrl}} " alt="Avatar" style="width:100%">
+  <div>
+    <b>ProfileUrl :</b
+    ><input
+      type="text"
+      placeholder="enter profile Url"
+      formControlName="avatarUrl"
+      style="float: right"
+    />
+    <img src="{{ userData?.avatarUrl }} " alt="Avatar" style="width: 100%" />
+  </div>
+
+  <div class="container">
+    <p>
+      <b>Name :</b>
+      <input
+        type="text"
+        value="{{ userData?.name }}"
+        name=""
+        formControlName="name"
+      />
+    </p>
+    <p>
+      <b>Status Message :</b>
+      <input
+        type="text"
+        value="{{ userData?.statusMessage }}"
+        formControlName="statusMessage"
+      />
+    </p>
+    <button
+      appHighlight
+      *appNot="showcondition"
+      (click)="showcondition = !showcondition"
+    >
+      Show email
+    </button>
+    <button
+      appHighlight
+      *appNot="!showcondition"
+      (click)="showcondition = !showcondition"
+    >
+      Hide email
+    </button>
+    <p>
+      <b>Email :</b>
+      <input
+        *appNot="!showcondition"
+        type="text"
+        value="{{ userData?.email }}"
+        formControlName="email"
+      />
+    </p>
+
+    <p>
+      <b>Age:</b>
+      <input type="text" value="{{ userData?.age }}" formControlName="age" />
+    </p>
+    <p><b>createdAt : </b>{{ userData?.createdAt | date: "medium" }}</p>
+
+    <p>
+      <b>isPublic:</b>
+      <input type="radio" id="True" value="True" formControlName="isPublic" >True<br>   
+        <input type="radio" id="False" value="False" formControlName="isPublic">False<br>   
+    </p>
+
+    <div class="footer">
+      <button appHighlight (click)="saveProfile()">Save</button>
+      <div>
+        <button (click)="authtest()">auth</button>
+      </div>
+      <div>
+        <button
+          (click)="deleteProfile(userData?.id)"
+          style="color: red; float: right"
+        >
+          Delete
+        </button>
+      </div>
+
+      <div></div>
     </div>
-    
-    <div class="container" >
-       <p><b>Name :</b> <input type="text" value="{{userData?.name}}" name="" formControlName="name"></p>
-      <p><b>Status Message :</b> <input type="text" value="{{userData?.statusMessage}}" formControlName="statusMessage"> </p>
-      <button appHighlight *appNot="showcondition" (click)="showcondition=!showcondition"> Show email</button> 
-      <button appHighlight *appNot="!showcondition" (click)="showcondition=!showcondition" >Hide email</button>
-      <p><b>Email :</b> <input *appNot="!showcondition" type="text" value="{{userData?.email}}" formControlName="email"> </p> 
-
-      <p><b>Age:</b> <input type="text" value="{{userData?.age}}" formControlName="age"> </p>
-      <p><b>createdAt : </b>{{userData?.createdAt | date : 'medium'}}</p>
-
-      <p><b>isPublic:</b>  
-        <span>
-            <input type="radio" id="True" value="True" formControlName="isPublic">True
-            <input type="radio" id="False" value="False" formControlName="isPublic">False  
-        </span>
-
-     </p>
-      
-      <div class="footer">
-          <button appHighlight (click)="saveProfile()"> Save</button>
-          <div>
-            <button (click)="authtest()"> auth</button>
-          </div>
-          <div>
-              <button (click)="deleteProfile(userData?.id)" style="color:red;float: right"   > Delete </button>
-          </div>
-
-          <div>
-            
-          </div>
-          
-        </div>
-
-    </div>
-   
+  </div>
 </div>
+
+<router-outlet></router-outlet>

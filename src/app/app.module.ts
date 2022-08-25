@@ -8,13 +8,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { httpInterceptorProviders } from './interceptor_index';
-import { AuthtestComponent } from './authtest/authtest.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    AuthtestComponent,
   ],
   imports: [
     BrowserModule,

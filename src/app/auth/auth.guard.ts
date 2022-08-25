@@ -9,6 +9,7 @@ import { UsersService } from '../services/users.service';
 })
 export class AuthGuard implements CanActivate {
   id: any;
+  result: string;
   constructor(
     private route: ActivatedRoute,
     private router: Router
@@ -19,7 +20,13 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree 
   {
+    this.result = window.location.href.split('/').reverse()[0]   
+     if(parseInt(this.result) %2 == 0 ){
+      return true
+     }
+     else{
       return false
+     }
   }
   
 }

@@ -17,7 +17,6 @@ export class UserDetailComponent implements OnInit, OnDestroy {
   userData!: Users;
   subscriptionList: Subscription[] = [];
   showcondition = true;
-  
 
   profileForm = new FormGroup({
     name: new FormControl(""),
@@ -37,7 +36,7 @@ export class UserDetailComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    const filter = this.route.snapshot.params['id'];
+    const filter = this.route.snapshot.params["id"];
     this.getUser();
   }
 
@@ -45,11 +44,9 @@ export class UserDetailComponent implements OnInit, OnDestroy {
     this.subscriptionList.push(
       this.route.params.subscribe((param: Params) => {
         this.id = param["id"];
-        
       })
     );
 
-    // this.id = this.route.snapshot.params['id']
 
     this.userService.getUser(this.id).subscribe((data: any) => {
       this.userData = data;
@@ -63,6 +60,7 @@ export class UserDetailComponent implements OnInit, OnDestroy {
         createdAt: this.userData.createdAt,
       });
     });
+    
   }
 
   goBack() {
@@ -77,21 +75,16 @@ export class UserDetailComponent implements OnInit, OnDestroy {
   }
 
   deleteProfile(id: any) {
-    this.subscriptionList.push(
-      this.userService.deleteUser(id).subscribe()
-      )
+    this.subscriptionList.push(this.userService.deleteUser(id).subscribe());
     this.router.navigate([""]);
   }
 
-  authtest(){
-    this.router.navigate(['authtest']);
+  authtest() {
+    this.router.navigate([window.location.pathname + "/authtest"]);
+    // console.log(window.location.pathname);
   }
 
   ngOnDestroy(): void {
-    this.subscriptionList.forEach(i => i.unsubscribe());
+    this.subscriptionList.forEach((i) => i.unsubscribe());
   }
-
-  // pageRedirect(){
-  //   return this.router.navigate(['detail',3])
-  // }
 }
